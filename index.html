@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Authentic 3D Kerala Pookalam</title>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+      }
+    }
+    </script>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="app"></div>
+
+    <!-- Header Overlay -->
+    <div class="ui-header">
+        <h1 class="title">🌸 TRADITIONAL KERALA POOKALAM 🌸</h1>
+        <p class="subtitle">Based on Authentic Onam Flower Carpet Design • Interactive 3D WebGL</p>
+    </div>
+
+    <!-- Camera Angles Control Bar -->
+    <div class="ui-controls">
+        <span class="control-label">Camera Angle:</span>
+        <button class="camera-btn active" data-preset="threeD">3D Angle</button>
+        <button class="camera-btn" data-preset="top">Top View</button>
+        <button class="camera-btn" data-preset="low">Low Angle</button>
+        <button class="camera-btn" data-preset="side">Side Angle</button>
+        <button class="camera-btn" data-preset="closeup">Close-up</button>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
+
+</body>
+</html>
