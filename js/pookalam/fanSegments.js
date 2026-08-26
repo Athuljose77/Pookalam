@@ -7,17 +7,14 @@ function createArcBand(innerRadius, outerRadius, startAngle, endAngle, color, de
 
     const geometry = new THREE.ExtrudeGeometry(shape, {
         depth: depth,
-        bevelEnabled: true,
-        bevelThickness: 0.008,
-        bevelSize: 0.008,
-        bevelSegments: 2,
+        bevelEnabled: false,
         curveSegments: 24
     });
 
     const material = new THREE.MeshStandardMaterial({
         color: color,
-        roughness: 0.75,
-        metalness: 0.05,
+        roughness: 0.90,
+        metalness: 0.0,
         side: THREE.DoubleSide
     });
 
@@ -34,12 +31,14 @@ export function createFanSegments() {
     const angleStep = (Math.PI * 2) / count;
     const fanAngularWidth = angleStep * 0.72;
 
+    // All depths flattened (0.018-0.022) and Y heights compressed (0.17-0.20)
+    // so arcs lie flat like a real flower carpet, not raised pizza toppings
     const bands = [
-        { rIn: 2.25, rOut: 2.65, color: 0x800020, depth: 0.04, height: 0.20 }, // Maroon / Dark Red
-        { rIn: 2.65, rOut: 3.05, color: 0x2d6a2e, depth: 0.045, height: 0.21 }, // Green
-        { rIn: 3.05, rOut: 3.45, color: 0xff7200, depth: 0.05, height: 0.22 }, // Orange
-        { rIn: 3.45, rOut: 3.85, color: 0xffd91a, depth: 0.055, height: 0.23 }, // Yellow
-        { rIn: 3.85, rOut: 4.30, color: 0xf5eee0, depth: 0.06, height: 0.24 }  // White/Cream Outer Arc
+        { rIn: 2.25, rOut: 2.65, color: 0x800020, depth: 0.018, height: 0.17 }, // Maroon / Dark Red
+        { rIn: 2.65, rOut: 3.05, color: 0x2d6a2e, depth: 0.018, height: 0.17 }, // Green
+        { rIn: 3.05, rOut: 3.45, color: 0xff7200, depth: 0.018, height: 0.18 }, // Orange
+        { rIn: 3.45, rOut: 3.85, color: 0xffd91a, depth: 0.018, height: 0.18 }, // Yellow
+        { rIn: 3.85, rOut: 4.35, color: 0xf5eee0, depth: 0.018, height: 0.18 }  // White/Cream Outer Arc
     ];
 
     for (let i = 0; i < count; i++) {

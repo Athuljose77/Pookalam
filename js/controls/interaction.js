@@ -1,5 +1,9 @@
 import * as THREE from 'three';
 
+// Large-area mesh types that should NEVER scale on hover
+// (scaling them would cover the entire pookalam)
+const NO_SCALE_TYPES = new Set(['base', 'outer-border']);
+
 export function setupInteraction(camera, scene, domElement, pookalamGroup) {
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
@@ -19,9 +23,14 @@ export function setupInteraction(camera, scene, domElement, pookalamGroup) {
             child.userData.targetY = child.position.y;
             child.userData.pulseScale = 1.0;
 
+            // Flag whether this mesh type is allowed to scale
+            child.userData.allowScale = !NO_SCALE_TYPES.has(child.userData.type);
+
             if (child.material) {
-                child.material = child.material.clone(); // ensure unique material for hover glow
-                child.userData.baseEmissive = child.material.emissive ? child.material.emissive.clone() : new THREE.Color(0, 0, 0);
+                child.material = child.material.clone();
+                child.userData.baseEmissive = child.material.emissive
+                    ? child.material.emissive.clone()
+                    : new THREE.Color(0, 0, 0);
                 child.userData.targetEmissive = child.userData.baseEmissive.clone();
             }
         }
@@ -46,13 +55,16 @@ export function setupInteraction(camera, scene, domElement, pookalamGroup) {
                     hoveredMesh.userData.targetEmissive.copy(hoveredMesh.userData.baseEmissive);
                 }
 
-                // Set new hovered mesh
                 hoveredMesh = hit;
                 domElement.style.cursor = 'pointer';
 
-                hoveredMesh.userData.targetScale.set(1.15, 1.15, 1.15);
-                hoveredMesh.userData.targetY = hoveredMesh.userData.basePosition.y + 0.08;
-                hoveredMesh.userData.targetEmissive.setHex(0x442200);
+                // Only scale meshes that are small enough (not base/outer-border)
+                if (hoveredMesh.userData.allowScale) {
+                    hoveredMesh.userData.targetScale.set(1.06, 1.06, 1.06);
+                    hoveredMesh.userData.targetY = hoveredMesh.userData.basePosition.y + 0.03;
+                }
+                // All meshes get a subtle emissive glow regardless
+                hoveredMesh.userData.targetEmissive.setHex(0x331100);
             }
         } else {
             if (hoveredMesh) {
@@ -65,11 +77,10 @@ export function setupInteraction(camera, scene, domElement, pookalamGroup) {
         }
     }
 
-    // Pointer down / Click listener
+    // Click: tiny pulse only on small meshes
     function onPointerDown(event) {
-        if (hoveredMesh) {
-            // Trigger a quick pulse scale effect
-            hoveredMesh.userData.pulseScale = 1.35;
+        if (hoveredMesh && hoveredMesh.userData.allowScale) {
+            hoveredMesh.userData.pulseScale = 1.05;
         }
     }
 
@@ -81,24 +92,28 @@ export function setupInteraction(camera, scene, domElement, pookalamGroup) {
         interactiveMeshes.forEach((mesh) => {
             // Decay pulse scale back to 1.0
             if (mesh.userData.pulseScale > 1.0) {
-                mesh.userData.pulseScale += (1.0 - mesh.userData.pulseScale) * 0.15;
+                mesh.userData.pulseScale += (1.0 - mesh.userData.pulseScale) * 0.18;
+                if (Math.abs(mesh.userData.pulseScale - 1.0) < 0.001) {
+                    mesh.userData.pulseScale = 1.0;
+                }
             }
 
-            // Lerp scale
-            const desiredScaleX = mesh.userData.targetScale.x * mesh.userData.pulseScale;
-            const desiredScaleY = mesh.userData.targetScale.y * mesh.userData.pulseScale;
-            const desiredScaleZ = mesh.userData.targetScale.z * mesh.userData.pulseScale;
+            // Lerp scale only if allowed
+            if (mesh.userData.allowScale) {
+                const desiredX = mesh.userData.targetScale.x * mesh.userData.pulseScale;
+                const desiredY = mesh.userData.targetScale.y * mesh.userData.pulseScale;
+                const desiredZ = mesh.userData.targetScale.z * mesh.userData.pulseScale;
+                mesh.scale.x += (desiredX - mesh.scale.x) * 0.12;
+                mesh.scale.y += (desiredY - mesh.scale.y) * 0.12;
+                mesh.scale.z += (desiredZ - mesh.scale.z) * 0.12;
 
-            mesh.scale.x += (desiredScaleX - mesh.scale.x) * 0.1;
-            mesh.scale.y += (desiredScaleY - mesh.scale.y) * 0.1;
-            mesh.scale.z += (desiredScaleZ - mesh.scale.z) * 0.1;
+                // Lerp Y position
+                mesh.position.y += (mesh.userData.targetY - mesh.position.y) * 0.12;
+            }
 
-            // Lerp Y position
-            mesh.position.y += (mesh.userData.targetY - mesh.position.y) * 0.1;
-
-            // Lerp emissive color
+            // Lerp emissive color for all meshes
             if (mesh.material && mesh.material.emissive) {
-                mesh.material.emissive.lerp(mesh.userData.targetEmissive, 0.1);
+                mesh.material.emissive.lerp(mesh.userData.targetEmissive, 0.12);
             }
         });
     };
