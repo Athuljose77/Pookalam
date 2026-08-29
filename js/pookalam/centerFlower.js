@@ -38,7 +38,7 @@ export function createCenterFlower() {
 
     for (let i = 0; i < layer1Count; i++) {
         const angle = (Math.PI * 2 / layer1Count) * i;
-        const petal = createFloralPetal(layer1Length, layer1Width, 0.025, 0xfffaf0);
+        const petal = createFloralPetal(layer1Length, layer1Width, 0.025, 0xfff8e7);
 
         petal.rotation.z = -angle - Math.PI / 2;
         petal.position.x = 0;
@@ -57,7 +57,7 @@ export function createCenterFlower() {
 
     for (let i = 0; i < layer2Count; i++) {
         const angle = (Math.PI * 2 / layer2Count) * i + layer2Offset;
-        const petal = createFloralPetal(layer2Length, layer2Width, 0.025, 0xffb700);
+        const petal = createFloralPetal(layer2Length, layer2Width, 0.025, 0xffd43b);
 
         petal.rotation.z = -angle - Math.PI / 2;
         petal.position.x = 0;
@@ -75,7 +75,7 @@ export function createCenterFlower() {
 
     for (let i = 0; i < layer3Count; i++) {
         const angle = (Math.PI * 2 / layer3Count) * i;
-        const petal = createFloralPetal(layer3Length, layer3Width, 0.025, 0xe63946);
+        const petal = createFloralPetal(layer3Length, layer3Width, 0.025, 0xd62839);
 
         petal.rotation.z = -angle - Math.PI / 2;
         petal.position.x = 0;
@@ -89,7 +89,7 @@ export function createCenterFlower() {
     // 4. Layer 4: Small Central Yellow Flower Core / Seed Disk
     const coreGeo = new THREE.CylinderGeometry(0.18, 0.20, 0.04, 32);
     const coreMat = new THREE.MeshStandardMaterial({
-        color: 0xffa500,
+        color: 0xff7518,
         roughness: 0.9,
         metalness: 0.0
     });
@@ -101,7 +101,7 @@ export function createCenterFlower() {
     // 5. Central Seed Detail / Stigma Dot
     const dotGeo = new THREE.CylinderGeometry(0.09, 0.09, 0.05, 24);
     const dotMat = new THREE.MeshStandardMaterial({
-        color: 0xffd700,
+        color: 0xffd43b,
         roughness: 0.85,
         metalness: 0.0
     });

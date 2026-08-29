@@ -9,18 +9,18 @@ export function createInnerFill() {
     const angleStep = (Math.PI * 2) / count;
 
     const colors = [
-        0xffd91a, // Yellow
-        0xff8a00, // Orange
-        0x2d6a2e, // Green
-        0x800020, // Maroon
-        0xffd91a,
-        0xff8a00,
-        0x2d6a2e,
-        0x800020,
-        0xffd91a,
-        0xff8a00,
-        0x2d6a2e,
-        0x800020
+        0xffd72f, // Yellow
+        0xff861c, // Orange
+        0x286b35, // Green
+        0x8e1d38, // Maroon
+        0xffd72f,
+        0xff861c,
+        0x286b35,
+        0x8e1d38,
+        0xffd72f,
+        0xff861c,
+        0x286b35,
+        0x8e1d38
     ];
 
     for (let i = 0; i < count; i++) {

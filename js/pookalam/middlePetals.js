@@ -36,12 +36,12 @@ export function createMiddlePetals() {
     const width = 0.58;
 
     const colors = [
-        0xffd91a, // Yellow
-        0x2d6a2e, // Green
-        0xffd91a, // Yellow
-        0x2d6a2e, // Green
-        0xffd91a, // Yellow
-        0x2d6a2e  // Green
+        0xffd72f, // Yellow
+        0x286b35, // Green
+        0xffd72f, // Yellow
+        0x286b35, // Green
+        0xffd72f, // Yellow
+        0x286b35  // Green
     ];
 
     for (let i = 0; i < count; i++) {

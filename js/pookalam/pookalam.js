@@ -15,7 +15,7 @@ export function createPookalam() {
     // ========================================
     const baseGeometry = new THREE.CylinderGeometry(4.9, 4.9, 0.04, 128);
     const baseMaterial = new THREE.MeshStandardMaterial({
-        color: 0x900c3f, // Rich Crimson Red Base
+        color: 0x8e1d38, // Rich Maroon Base
         roughness: 0.8,
         metalness: 0.1
     });

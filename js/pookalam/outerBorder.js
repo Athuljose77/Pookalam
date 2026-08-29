@@ -20,7 +20,7 @@ export function createOuterBorder() {
     });
 
     const material = new THREE.MeshStandardMaterial({
-        color: 0xff7200,
+        color: 0xff7518,
         roughness: 0.90,
         metalness: 0.0
     });
@@ -35,13 +35,14 @@ export function createOuterBorder() {
     const dotRadius = 4.64;
     for (let i = 0; i < dotCount; i++) {
         const angle = (Math.PI * 2 / dotCount) * i;
-        const dotColor = i % 2 === 0 ? 0xffd91a : 0xb51e2b;
+        const dotColor = i % 2 === 0 ? 0xffd72f : 0xd62839;
         const dotGeo = new THREE.CylinderGeometry(0.055, 0.055, 0.025, 12);
         const dotMat = new THREE.MeshStandardMaterial({ color: dotColor, roughness: 0.9, metalness: 0 });
         const dot = new THREE.Mesh(dotGeo, dotMat);
         dot.position.x = dotRadius * Math.cos(angle);
         dot.position.z = dotRadius * Math.sin(angle);
         dot.position.y = 0.20;
+        dot.userData = { type: 'decorative-dot' };
         group.add(dot);
     }
 

@@ -7,7 +7,7 @@ function createChethiFlowerBud() {
     // Red petal head
     const budGeo = new THREE.CylinderGeometry(0.08, 0.06, 0.08, 16);
     const budMat = new THREE.MeshStandardMaterial({
-        color: 0xc8102e,
+        color: 0xffd72f,
         roughness: 0.7,
         metalness: 0.05
     });
@@ -17,7 +17,7 @@ function createChethiFlowerBud() {
     // Yellow center dot
     const centerGeo = new THREE.CylinderGeometry(0.03, 0.03, 0.09, 12);
     const centerMat = new THREE.MeshStandardMaterial({
-        color: 0xffd700,
+        color: 0x8e1d38,
         roughness: 0.8
     });
     const center = new THREE.Mesh(centerGeo, centerMat);
@@ -52,6 +52,7 @@ function createRedTriangleCluster(angle) {
 
             const bud = createChethiFlowerBud();
             bud.position.set(posX, 0.20, posZ);
+            bud.userData = { type: 'decorative-dot' };
 
             cluster.add(bud);
         }
@@ -60,12 +61,16 @@ function createRedTriangleCluster(angle) {
     return cluster;
 }
 
-// Create Component 5: Clean 3D Orange Star Triangle
 function createStarTriangle(angle, radiusInner, radiusOuter, width) {
     const shape = new THREE.Shape();
     const halfWidth = width / 2;
-    shape.moveTo(-halfWidth, radiusInner);
-    shape.lineTo(halfWidth, radiusInner);
+    const theta = Math.asin(halfWidth / radiusInner);
+    const startAngle = Math.PI / 2 + theta;
+    const endAngle = Math.PI / 2 - theta;
+    
+    // Draw the curved bottom edge to perfectly hug the circle
+    shape.absarc(0, 0, radiusInner, startAngle, endAngle, true);
+    // Draw lines to the outer point
     shape.lineTo(0, radiusOuter);
     shape.closePath();
 
@@ -79,7 +84,7 @@ function createStarTriangle(angle, radiusInner, radiusOuter, width) {
     });
 
     const material = new THREE.MeshStandardMaterial({
-        color: 0xff7200, // Bright Orange
+        color: 0xd62839, // Traditional Red
         roughness: 0.7,
         metalness: 0.05,
         side: THREE.DoubleSide
@@ -101,7 +106,8 @@ export function createTriangleMotifs() {
     // Component 5: Orange Star Triangles (forming 6-pointed star / hexagram)
     for (let i = 0; i < count; i++) {
         const angle = i * angleStep;
-        const starTriangle = createStarTriangle(angle, 2.2, 4.25, 1.45);
+        // radiusInner matches the outer radius of innerFill (2.25)
+        const starTriangle = createStarTriangle(angle, 2.25, 4.25, 1.45);
         starTriangle.userData = { type: 'star-triangle', index: i };
         group.add(starTriangle);
     }
