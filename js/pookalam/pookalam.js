@@ -13,14 +13,14 @@ export function createPookalam() {
     // ========================================
     // BASE DISK (Rich Crimson Red Base)
     // ========================================
-    const baseGeometry = new THREE.CylinderGeometry(4.9, 4.9, 0.20, 128);
+    const baseGeometry = new THREE.CylinderGeometry(4.9, 4.9, 0.04, 128);
     const baseMaterial = new THREE.MeshStandardMaterial({
         color: 0x900c3f, // Rich Crimson Red Base
         roughness: 0.8,
         metalness: 0.1
     });
     const base = new THREE.Mesh(baseGeometry, baseMaterial);
-    base.position.y = 0.05;
+    base.position.y = 0.13;
     base.receiveShadow = true;
     base.castShadow = true;
     base.userData = { type: 'base' };

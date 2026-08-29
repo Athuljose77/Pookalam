@@ -43,7 +43,7 @@ export function createCenterFlower() {
         petal.rotation.z = -angle - Math.PI / 2;
         petal.position.x = 0;
         petal.position.z = 0;
-        petal.position.y = 0.40;
+        petal.position.y = 0.20;
 
         petal.userData = { type: 'center-petal-l1', index: i };
         group.add(petal);
@@ -62,7 +62,7 @@ export function createCenterFlower() {
         petal.rotation.z = -angle - Math.PI / 2;
         petal.position.x = 0;
         petal.position.z = 0;
-        petal.position.y = 0.43;
+        petal.position.y = 0.23;
 
         petal.userData = { type: 'center-petal-l2', index: i };
         group.add(petal);
@@ -80,7 +80,7 @@ export function createCenterFlower() {
         petal.rotation.z = -angle - Math.PI / 2;
         petal.position.x = 0;
         petal.position.z = 0;
-        petal.position.y = 0.46;
+        petal.position.y = 0.26;
 
         petal.userData = { type: 'center-petal-l3', index: i };
         group.add(petal);
@@ -94,7 +94,7 @@ export function createCenterFlower() {
         metalness: 0.0
     });
     const core = new THREE.Mesh(coreGeo, coreMat);
-    core.position.y = 0.48;
+    core.position.y = 0.29;
     core.userData = { type: 'flower-center' };
     group.add(core);
 
@@ -106,7 +106,7 @@ export function createCenterFlower() {
         metalness: 0.0
     });
     const dot = new THREE.Mesh(dotGeo, dotMat);
-    dot.position.y = 0.51;
+    dot.position.y = 0.32;
     group.add(dot);
 
     return group;

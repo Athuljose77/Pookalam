@@ -34,11 +34,11 @@ export function createFanSegments() {
     // All depths flattened (0.018-0.022) and Y heights compressed (0.17-0.20)
     // so arcs lie flat like a real flower carpet, not raised pizza toppings
     const bands = [
-        { rIn: 2.25, rOut: 2.65, color: 0x800020, depth: 0.018, height: 0.17 }, // Maroon / Dark Red
-        { rIn: 2.65, rOut: 3.05, color: 0x2d6a2e, depth: 0.018, height: 0.17 }, // Green
-        { rIn: 3.05, rOut: 3.45, color: 0xff7200, depth: 0.018, height: 0.18 }, // Orange
-        { rIn: 3.45, rOut: 3.85, color: 0xffd91a, depth: 0.018, height: 0.18 }, // Yellow
-        { rIn: 3.85, rOut: 4.35, color: 0xf5eee0, depth: 0.018, height: 0.18 }  // White/Cream Outer Arc
+        { rIn: 2.25, rOut: 2.65, color: 0x800020, depth: 0.018, height: 0.15 }, // Maroon / Dark Red
+        { rIn: 2.65, rOut: 3.05, color: 0x2d6a2e, depth: 0.018, height: 0.15 }, // Green
+        { rIn: 3.05, rOut: 3.45, color: 0xff7200, depth: 0.018, height: 0.15 }, // Orange
+        { rIn: 3.45, rOut: 3.85, color: 0xffd91a, depth: 0.018, height: 0.15 }, // Yellow
+        { rIn: 3.85, rOut: 4.35, color: 0xf5eee0, depth: 0.018, height: 0.15 }  // White/Cream Outer Arc
     ];
 
     for (let i = 0; i < count; i++) {

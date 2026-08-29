@@ -17,8 +17,8 @@ function createRosettePetal(length, width, color) {
 
     const material = new THREE.MeshStandardMaterial({
         color: color,
-        roughness: 0.75,
-        metalness: 0.05,
+        roughness: 0.90,
+        metalness: 0.0,
         side: THREE.DoubleSide
     });
 
@@ -30,34 +30,29 @@ function createRosettePetal(length, width, color) {
 export function createMiddlePetals() {
     const group = new THREE.Group();
 
-    const count = 12;
+    const count = 6;
     const radius = 1.35;
     const length = 1.15;
     const width = 0.58;
 
     const colors = [
         0xffd91a, // Yellow
-        0xff8a00, // Orange
         0x2d6a2e, // Green
-        0xc8102e, // Red
-        0xffd91a,
-        0xff8a00,
-        0x2d6a2e,
-        0xc8102e,
-        0xffd91a,
-        0xff8a00,
-        0x2d6a2e,
-        0xc8102e
+        0xffd91a, // Yellow
+        0x2d6a2e, // Green
+        0xffd91a, // Yellow
+        0x2d6a2e  // Green
     ];
 
     for (let i = 0; i < count; i++) {
-        const angle = (Math.PI * 2 / count) * i;
+        // Offset by 30 degrees (Math.PI / 6) to put them exactly between the triangles
+        const angle = (Math.PI * 2 / count) * i + (Math.PI / 6);
         const petal = createRosettePetal(length, width, colors[i]);
 
         petal.rotation.z = -angle - Math.PI / 2;
         petal.position.x = radius * Math.cos(angle);
         petal.position.z = radius * Math.sin(angle);
-        petal.position.y = 0.34;
+        petal.position.y = 0.15;
 
         petal.userData = { type: 'middle-petal', index: i };
         group.add(petal);

@@ -49,7 +49,7 @@ export function createInnerFill() {
 
         const mesh = new THREE.Mesh(geometry, material);
         mesh.rotation.x = -Math.PI / 2;
-        mesh.position.y = 0.22;
+        mesh.position.y = 0.15;
         mesh.userData = { type: 'inner-fill', index: i };
         group.add(mesh);
     }

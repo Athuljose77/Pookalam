@@ -27,7 +27,7 @@ export function createOuterBorder() {
 
     const ring = new THREE.Mesh(geometry, material);
     ring.rotation.x = -Math.PI / 2;
-    ring.position.y = 0.17;
+    ring.position.y = 0.15;
     group.add(ring);
 
     // Small alternating decorative dots (yellow/red) around the ring edge

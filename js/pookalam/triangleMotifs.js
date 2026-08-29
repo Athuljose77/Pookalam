@@ -51,7 +51,7 @@ function createRedTriangleCluster(angle) {
             const posZ = dirZ * rowRadialOffset + sideZ * sideOffset;
 
             const bud = createChethiFlowerBud();
-            bud.position.set(posX, 0.32, posZ);
+            bud.position.set(posX, 0.20, posZ);
 
             cluster.add(bud);
         }
@@ -88,7 +88,7 @@ function createStarTriangle(angle, radiusInner, radiusOuter, width) {
     const mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.x = -Math.PI / 2;
     mesh.rotation.z = -angle - Math.PI / 2;
-    mesh.position.y = 0.26;
+    mesh.position.y = 0.15;
 
     return mesh;
 }
