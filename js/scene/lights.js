@@ -5,7 +5,7 @@ export function createLights(scene) {
     // ── Ambient: warm natural Kerala daylight ──────────────────────────────
     const ambientLight = new THREE.AmbientLight(
         0xfff3d6,
-        0.9           // slightly dimmer so accent lights have more impact
+        1.7           // daylight ambient brightness for default light mode
     );
     scene.add(ambientLight);
 

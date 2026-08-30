@@ -3,6 +3,37 @@
    ============================================= */
 
 :root,
+[data-theme="light"] {
+    --bg-gradient:      radial-gradient(circle at center, #fdf5e6 0%, #f5e6cc 100%);
+    --title-color:      #3b1a05;
+    --subtitle-color:   #8b4513;
+    --title-shadow:     0 2px 8px rgba(255, 255, 255, 0.4);
+    --subtitle-shadow:  0 1px 4px rgba(255, 255, 255, 0.3);
+
+    --bar-bg:           rgba(255, 248, 235, 0.85);
+    --bar-border:       rgba(139, 69, 19, 0.20);
+    --bar-shadow:       0 8px 32px rgba(139, 69, 19, 0.18);
+
+    --label-color:      rgba(90, 50, 10, 0.7);
+    --btn-color:        rgba(60, 30, 5, 0.85);
+    --btn-hover-bg:     rgba(139, 69, 19, 0.10);
+    --btn-hover-border: rgba(139, 69, 19, 0.28);
+
+    --active-bg:        #d2691e;
+    --active-color:     #fff8f0;
+    --active-shadow:    0 2px 10px rgba(210, 105, 30, 0.40);
+
+    /* Theme toggle button */
+    --toggle-bg:        rgba(255, 245, 225, 0.90);
+    --toggle-border:    rgba(139, 69, 19, 0.22);
+    --toggle-shadow:    0 4px 20px rgba(139, 69, 19, 0.18);
+    --toggle-hover-bg:  rgba(255, 235, 200, 1);
+
+    /* Which icon is visible */
+    --icon-dark-opacity:  0;
+    --icon-light-opacity: 1;
+}
+
 [data-theme="dark"] {
     --bg-gradient:      radial-gradient(circle at center, #1b1728 0%, #090810 100%);
     --title-color:      #ffffff;
@@ -32,35 +63,6 @@
     /* Which icon is visible */
     --icon-dark-opacity:  1;
     --icon-light-opacity: 0;
-}
-
-[data-theme="light"] {
-    --bg-gradient:      radial-gradient(circle at center, #fdf5e6 0%, #f5e6cc 100%);
-    --title-color:      #3b1a05;
-    --subtitle-color:   #8b4513;
-    --title-shadow:     0 2px 8px rgba(255, 255, 255, 0.4);
-    --subtitle-shadow:  0 1px 4px rgba(255, 255, 255, 0.3);
-
-    --bar-bg:           rgba(255, 248, 235, 0.85);
-    --bar-border:       rgba(139, 69, 19, 0.20);
-    --bar-shadow:       0 8px 32px rgba(139, 69, 19, 0.18);
-
-    --label-color:      rgba(90, 50, 10, 0.7);
-    --btn-color:        rgba(60, 30, 5, 0.85);
-    --btn-hover-bg:     rgba(139, 69, 19, 0.10);
-    --btn-hover-border: rgba(139, 69, 19, 0.28);
-
-    --active-bg:        #d2691e;
-    --active-color:     #fff8f0;
-    --active-shadow:    0 2px 10px rgba(210, 105, 30, 0.40);
-
-    --toggle-bg:        rgba(255, 245, 225, 0.90);
-    --toggle-border:    rgba(139, 69, 19, 0.22);
-    --toggle-shadow:    0 4px 20px rgba(139, 69, 19, 0.18);
-    --toggle-hover-bg:  rgba(255, 235, 200, 1);
-
-    --icon-dark-opacity:  0;
-    --icon-light-opacity: 1;
 }
 
 

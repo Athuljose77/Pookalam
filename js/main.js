@@ -83,8 +83,8 @@ const THEMES = {
 };
 
 const ambientLight = scene.children.find(c => c.isAmbientLight);
-let targetBg    = THEMES.dark.bg.clone();
-let currentTheme = 'dark';
+let targetBg    = THEMES.light.bg.clone();
+let currentTheme = 'light';
 
 const themeToggleBtn = document.getElementById('theme-toggle');
 themeToggleBtn.addEventListener('click', () => {
