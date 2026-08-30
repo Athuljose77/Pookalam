@@ -12,15 +12,15 @@ export function createInnerFill() {
         0xffd72f, // Yellow
         0xff861c, // Orange
         0x286b35, // Green
-        0x8e1d38, // Maroon
+        0xe8640a, // Warm Saffron Orange (replaces heavy maroon)
         0xffd72f,
         0xff861c,
         0x286b35,
-        0x8e1d38,
+        0xe8640a,
         0xffd72f,
         0xff861c,
         0x286b35,
-        0x8e1d38
+        0xe8640a
     ];
 
     for (let i = 0; i < count; i++) {

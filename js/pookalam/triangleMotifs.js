@@ -100,7 +100,7 @@ function createStarTriangle(angle, radiusInner, radiusOuter, width) {
 
 export function createTriangleMotifs() {
     const group = new THREE.Group();
-    const count = 6;
+    const count = 8;
     const angleStep = (Math.PI * 2) / count;
 
     // Component 5: Orange Star Triangles (forming 6-pointed star / hexagram)

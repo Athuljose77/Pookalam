@@ -1,11 +1,80 @@
+/* =============================================
+   CSS CUSTOM PROPERTIES — THEME TOKENS
+   ============================================= */
+
+:root,
+[data-theme="dark"] {
+    --bg-gradient:      radial-gradient(circle at center, #1b1728 0%, #090810 100%);
+    --title-color:      #ffffff;
+    --subtitle-color:   rgba(255, 215, 0, 0.85);
+    --title-shadow:     0 4px 16px rgba(0, 0, 0, 0.8);
+    --subtitle-shadow:  0 2px 8px rgba(0, 0, 0, 0.9);
+
+    --bar-bg:           rgba(18, 16, 28, 0.78);
+    --bar-border:       rgba(255, 255, 255, 0.12);
+    --bar-shadow:       0 8px 32px rgba(0, 0, 0, 0.6);
+
+    --label-color:      rgba(255, 255, 255, 0.6);
+    --btn-color:        rgba(255, 255, 255, 0.85);
+    --btn-hover-bg:     rgba(255, 255, 255, 0.10);
+    --btn-hover-border: rgba(255, 255, 255, 0.22);
+
+    --active-bg:        #ffd700;
+    --active-color:     #12101c;
+    --active-shadow:    0 2px 10px rgba(255, 215, 0, 0.45);
+
+    /* Theme toggle button */
+    --toggle-bg:        rgba(30, 26, 46, 0.85);
+    --toggle-border:    rgba(255, 255, 255, 0.15);
+    --toggle-shadow:    0 4px 20px rgba(0, 0, 0, 0.5);
+    --toggle-hover-bg:  rgba(50, 44, 70, 0.95);
+
+    /* Which icon is visible */
+    --icon-dark-opacity:  1;
+    --icon-light-opacity: 0;
+}
+
+[data-theme="light"] {
+    --bg-gradient:      radial-gradient(circle at center, #fdf5e6 0%, #f5e6cc 100%);
+    --title-color:      #3b1a05;
+    --subtitle-color:   #8b4513;
+    --title-shadow:     0 2px 8px rgba(255, 255, 255, 0.4);
+    --subtitle-shadow:  0 1px 4px rgba(255, 255, 255, 0.3);
+
+    --bar-bg:           rgba(255, 248, 235, 0.85);
+    --bar-border:       rgba(139, 69, 19, 0.20);
+    --bar-shadow:       0 8px 32px rgba(139, 69, 19, 0.18);
+
+    --label-color:      rgba(90, 50, 10, 0.7);
+    --btn-color:        rgba(60, 30, 5, 0.85);
+    --btn-hover-bg:     rgba(139, 69, 19, 0.10);
+    --btn-hover-border: rgba(139, 69, 19, 0.28);
+
+    --active-bg:        #d2691e;
+    --active-color:     #fff8f0;
+    --active-shadow:    0 2px 10px rgba(210, 105, 30, 0.40);
+
+    --toggle-bg:        rgba(255, 245, 225, 0.90);
+    --toggle-border:    rgba(139, 69, 19, 0.22);
+    --toggle-shadow:    0 4px 20px rgba(139, 69, 19, 0.18);
+    --toggle-hover-bg:  rgba(255, 235, 200, 1);
+
+    --icon-dark-opacity:  0;
+    --icon-light-opacity: 1;
+}
+
+
+/* =============================================
+   BASE RESET
+   ============================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -13,8 +82,9 @@ body {
 }
 
 body {
-    background: radial-gradient(circle at center, #1b1728 0%, #090810 100%);
-    color: #fff;
+    background: var(--bg-gradient);
+    color: var(--title-color);
+    transition: background 0.5s ease;
 }
 
 #app {
@@ -22,7 +92,11 @@ body {
     height: 100%;
 }
 
-/* Header */
+
+/* =============================================
+   HEADER
+   ============================================= */
+
 .ui-header {
     position: absolute;
     top: 20px;
@@ -35,23 +109,88 @@ body {
 }
 
 .title {
-    color: #ffffff;
+    color: var(--title-color);
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 1px;
-    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+    text-shadow: var(--title-shadow);
+    transition: color 0.4s ease, text-shadow 0.4s ease;
 }
 
 .subtitle {
-    color: rgba(255, 215, 0, 0.85);
+    color: var(--subtitle-color);
     font-size: 0.85rem;
     margin-top: 4px;
     font-weight: 500;
     letter-spacing: 0.4px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    text-shadow: var(--subtitle-shadow);
+    transition: color 0.4s ease;
 }
 
-/* Camera Control Bar */
+
+/* =============================================
+   THEME TOGGLE BUTTON  (top-right)
+   ============================================= */
+
+.theme-btn {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--toggle-border);
+    background: var(--toggle-bg);
+    box-shadow: var(--toggle-shadow);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    cursor: pointer;
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease,
+        transform  0.2s ease;
+    overflow: hidden;
+}
+
+.theme-btn:hover {
+    background: var(--toggle-hover-bg);
+    transform: scale(1.08);
+}
+
+.theme-btn:active {
+    transform: scale(0.94);
+}
+
+/* Icon swap: only one visible per theme */
+.theme-icon {
+    position: absolute;
+    font-size: 1.3rem;
+    line-height: 1;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
+    user-select: none;
+}
+
+.theme-icon--dark {
+    opacity: var(--icon-dark-opacity);
+    transform: rotate(calc((1 - var(--icon-dark-opacity)) * -90deg));
+}
+
+.theme-icon--light {
+    opacity: var(--icon-light-opacity);
+    transform: rotate(calc((1 - var(--icon-light-opacity)) * 90deg));
+}
+
+
+/* =============================================
+   CAMERA CONTROL BAR
+   ============================================= */
+
 .ui-controls {
     position: absolute;
     bottom: 24px;
@@ -60,29 +199,31 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(18, 16, 28, 0.75);
+    background: var(--bar-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     padding: 8px 16px;
     border-radius: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--bar-border);
+    box-shadow: var(--bar-shadow);
     z-index: 10;
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .control-label {
     font-size: 0.8rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--label-color);
     margin-right: 4px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    transition: color 0.4s ease;
 }
 
 .camera-btn {
     background: transparent;
     border: 1px solid transparent;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--btn-color);
     padding: 6px 14px;
     font-size: 0.82rem;
     font-weight: 500;
@@ -93,14 +234,56 @@ body {
 }
 
 .camera-btn:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
+    color: var(--btn-color);
+    background: var(--btn-hover-bg);
+    border-color: var(--btn-hover-border);
 }
 
 .camera-btn.active {
-    background: #ffd700;
-    color: #12101c;
+    background: var(--active-bg);
+    color: var(--active-color);
     font-weight: 600;
-    box-shadow: 0 2px 10px rgba(255, 215, 0, 0.4);
+    box-shadow: var(--active-shadow);
+}
+
+
+/* =============================================
+   DRAG HINT  (bottom-right, fades in then out)
+   ============================================= */
+
+.drag-hint {
+    position: absolute;
+    bottom: 80px;
+    right: 24px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: rgba(255, 255, 255, 0.90);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.drag-hint.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.drag-hint.hidden {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+[data-theme="light"] .drag-hint {
+    background: rgba(255, 245, 225, 0.80);
+    color: rgba(60, 30, 5, 0.90);
+    border-color: rgba(139, 69, 19, 0.18);
 }

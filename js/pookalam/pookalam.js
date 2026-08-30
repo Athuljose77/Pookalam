@@ -2,6 +2,7 @@ import * as THREE from 'three';
 
 import { createOuterBorder } from './outerBorder.js';
 import { createFanSegments } from './fanSegments.js';
+import { createPetalRing } from './petalRing.js';
 import { createInnerFill } from './innerFill.js';
 import { createTriangleMotifs } from './triangleMotifs.js';
 import { createMiddlePetals } from './middlePetals.js';
@@ -41,6 +42,14 @@ export function createPookalam() {
     const fanSegments = createFanSegments();
     fanSegments.userData = { type: 'fan-segments' };
     pookalam.add(fanSegments);
+
+
+    // ========================================
+    // PETAL RING: Decorative ring between arcs and border
+    // ========================================
+    const petalRing = createPetalRing();
+    petalRing.userData = { type: 'petal-ring' };
+    pookalam.add(petalRing);
 
 
     // ========================================

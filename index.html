@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Authentic 3D Kerala Pookalam</title>
+    <title>Authentic 3D Kerala Pookalam | Onam Flower Carpet</title>
+    <meta name="description" content="An interactive 3D Kerala Pookalam rendered in WebGL. Explore authentic Onam flower carpet design with drag-to-interact effects, camera angles, and dark/light mode.">
+    <meta property="og:title" content="Traditional Kerala Pookalam — Interactive 3D">
+    <meta property="og:description" content="Authentic Onam flower carpet design in real-time 3D WebGL. Drag to scatter petals, change camera angles, toggle dark/light mode.">
+    <meta name="theme-color" content="#111111">
 
     <script type="importmap">
     {
@@ -29,6 +33,17 @@
     <div class="ui-header">
         <h1 class="title">🌸 TRADITIONAL KERALA POOKALAM 🌸</h1>
         <p class="subtitle">Based on Authentic Onam Flower Carpet Design • Interactive 3D WebGL</p>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-btn" title="Toggle Light / Dark Mode" aria-label="Toggle theme">
+        <span class="theme-icon theme-icon--dark">🌙</span>
+        <span class="theme-icon theme-icon--light">☀️</span>
+    </button>
+
+    <!-- Interaction hint: fades after first drag -->
+    <div id="drag-hint" class="drag-hint">
+        <span>🖱️ Click &amp; drag to scatter petals</span>
     </div>
 
     <!-- Camera Angles Control Bar -->

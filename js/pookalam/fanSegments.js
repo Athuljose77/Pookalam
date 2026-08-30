@@ -27,7 +27,7 @@ function createArcBand(innerRadius, outerRadius, startAngle, endAngle, color, de
 export function createFanSegments() {
     const group = new THREE.Group();
 
-    const count = 6;
+    const count = 8;
     const angleStep = (Math.PI * 2) / count;
     const fanAngularWidth = angleStep * 0.72;
 

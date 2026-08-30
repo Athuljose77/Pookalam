@@ -30,18 +30,20 @@ function createRosettePetal(length, width, color) {
 export function createMiddlePetals() {
     const group = new THREE.Group();
 
-    const count = 6;
+    const count = 8;
     const radius = 1.35;
     const length = 1.15;
     const width = 0.58;
 
     const colors = [
-        0xffd72f, // Yellow
-        0x286b35, // Green
-        0xffd72f, // Yellow
-        0x286b35, // Green
-        0xffd72f, // Yellow
-        0x286b35  // Green
+        0xfff4e0, // Warm Cream / White (jasmine)
+        0xd62839, // Deep Red (traditional Kerala red)
+        0xfff4e0, // Warm Cream / White (jasmine)
+        0xd62839, // Deep Red (traditional Kerala red)
+        0xfff4e0, // Warm Cream / White (jasmine)
+        0xd62839, // Deep Red (traditional Kerala red)
+        0xfff4e0, // Warm Cream / White (jasmine)
+        0xd62839  // Deep Red (traditional Kerala red)
     ];
 
     for (let i = 0; i < count; i++) {
@@ -52,7 +54,7 @@ export function createMiddlePetals() {
         petal.rotation.z = -angle - Math.PI / 2;
         petal.position.x = radius * Math.cos(angle);
         petal.position.z = radius * Math.sin(angle);
-        petal.position.y = 0.15;
+        petal.position.y = 0.21; // Raised above inner arc bands so petals don't blend in
 
         petal.userData = { type: 'middle-petal', index: i };
         group.add(petal);
